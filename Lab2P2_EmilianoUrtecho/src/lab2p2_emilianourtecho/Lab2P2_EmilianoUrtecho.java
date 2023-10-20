@@ -71,14 +71,27 @@ public class Lab2P2_EmilianoUrtecho {
                     crearJugador();
                     break;
                 case 2: // Modificar Jugador
+                    System.out.print("Ingrese el nombre a modificar: ");
+                    String nombre = escan.next();
+                    System.out.print("Ingrese los puntos de reputacion que quiera modificar: ");
+                    int puntosReputacion = escan.nextInt();
+                    System.out.print("Ingrese la cantidad de dinero que desea modificar: ");
+                    double dinero = escan.nextDouble();
+                    modificarJugador(nombre, puntosReputacion, dinero);
                     break;
                 case 3: // Listar Jugador
+                    listarJugador();
                     break;
                 case 4: // Eliminar Jugador
+                    System.out.print("Ingrese el nombre que desea eliminar: ");
+                    String nombreElim = escan.next();
+                    eliminarJugador(nombreElim);
                     break;
                 case 5: // Salir
+                    System.out.println("Si desea salir presione otra vez la tecla 5. ");
                     break;
                 default:// No se
+                    System.out.println("Lo siento, no puedo leer eso, vuelva a presionar una tecla valida");
                     break;
             }
             System.out.println("    ~CRUD JUGADORES~");
@@ -165,6 +178,7 @@ public class Lab2P2_EmilianoUrtecho {
         do {
             switch(eleccionC){
                 case 1: // Crear Carro
+                    crearCarro();
                     break;
                 case 2: // Modificar CArro
                     break;

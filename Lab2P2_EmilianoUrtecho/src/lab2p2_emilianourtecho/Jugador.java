@@ -54,4 +54,15 @@ public class Jugador {
         DineroBanco += sueldo;
         System.out.println("Usted tiene "+DineroBanco+" dinero disponible");
     }
+    
+    //SETTERS
+    public void setReputacionPuntos(int reputacionPuntos){
+        this.reputacionCarros = reputacionPuntos;
+    }
+    public void setDineroBanco(double dineroBanco){
+        this.DineroBanco = dineroBanco;
+    }
+    public void setNombre(String Nombre){
+        this.nombre = Nombre;
+    }    
 }
