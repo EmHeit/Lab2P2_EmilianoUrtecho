@@ -1,11 +1,14 @@
 
 package lab2p2_emilianourtecho;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Lab2P2_EmilianoUrtecho {
 
     static Scanner escan = new Scanner (System.in);
+    static List <Jugador> jugadores = new ArrayList();
     
     public static void main(String[] args) {
         byte eleccion;
@@ -51,7 +54,7 @@ public class Lab2P2_EmilianoUrtecho {
             
         } while (eleccion != 5);
     }
-    
+    //CRUD JUGADORES
     public static void crudJugadores(){
         byte eleccionJ;
         System.out.println("    ~CRUD JUGADORES~");
@@ -65,6 +68,7 @@ public class Lab2P2_EmilianoUrtecho {
         do {
             switch(eleccionJ){
                 case 1: // Crear Jugador
+                    crearJugador();
                     break;
                 case 2: // Modificar Jugador
                     break;
@@ -88,6 +92,20 @@ public class Lab2P2_EmilianoUrtecho {
         } while (eleccionJ != 5);
     }
     
+    public static void crearJugador(){
+        System.out.print("Ingrese el nombre del jugador: ");
+        String nombreJugador = escan.next();
+        int reputacionPuntos = 100;
+        System.out.print("Sus puntos de reputacion "+reputacionPuntos);
+        double dineroBanco = 15000.00;
+        System.out.print("Su dinero disponible en el banco "+dineroBanco);
+        Jugador jugadorNuevo = new Jugador(nombreJugador, reputacionPuntos, dineroBanco);
+        jugadores.add(jugadorNuevo);    
+        System.out.println("Usted ha creado a '"+nombreJugador+"' con exito");
+        
+    }
+    
+    //CRUD CARROS
     public static void crudCarros(){
         byte eleccionC;
         System.out.println("    ~CRUD CARROS~");
@@ -124,6 +142,31 @@ public class Lab2P2_EmilianoUrtecho {
             System.out.print("Elija una opcion: ");
             eleccionC = escan.nextByte();
         } while (eleccionC != 5);        
+    }
+    public static void crearCarro(){
+        System.out.print("Ingrese la marca del carro: ");
+        String marca = escan.next();
+        
+        System.out.print("Ingrese el modelo del carro: ");
+        String modelo = escan.next();
+        
+        System.out.print("Ingrese el color del carro: ");
+        String color = escan.next();
+        
+        System.out.print("Ingrese el precio del nuevo carro: ");
+        double precioCarro = escan.nextDouble();
+        
+        String[] mejoraTipo = {"Spoiler", "Side Skirts", "Front Bumper", "Back Bumper", "Super Burlds"};
+        double[] mejoraPrecio = {3500.00, 1800.00, 2000.00, 1500.00, 8,800.00};
+        
+        List<String> mejorasSeleccionadas = new ArrayList();
+        System.out.println("Ingrese la cantidad de mejoras visuales que quiera: ");
+        String mejorasIngresadas = escan.next();
+        
+        
+        System.out.print("Ingrese el nombre del jugador que tengra el carro: ");
+        String nombreJugador = escan.next();
+        
     }
     
 }

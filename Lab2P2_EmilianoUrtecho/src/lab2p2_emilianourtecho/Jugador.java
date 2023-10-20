@@ -26,5 +26,32 @@ public class Jugador {
     public double getDineroBanco(){
         return DineroBanco;
     }
+    //Metodo de compra de carro
+    public void ComprarCarro(Carro carro){
+        if (carros.contains(carro)) {
+            carros.add(carro);
+            DineroBanco -= carro.getPrecio();
+            System.out.println("Ha comprado el carro con exito");
+        }else{
+            System.out.println("No puede comprar el carro");
+        }
+    }
+    public void VenderCarro(Carro carro){
+        if (carros.contains(carro)) {
+            carros.remove(carro);
+            DineroBanco += carro.getPrecio();
+            System.out.println("Ha vendido su carro");
+        }else{
+            System.out.println("El jugador no tiene acceso a ese carro.");
+        }
+    }
+    public void puntosReputacion(int reputacion){
+        reputacionCarros += reputacion;
+        System.out.println("Usted tiene " + reputacionCarros + " puntos de reputacion");
+    }
     
+    public void Banco(double sueldo){
+        DineroBanco += sueldo;
+        System.out.println("Usted tiene "+DineroBanco+" dinero disponible");
+    }
 }
