@@ -185,6 +185,9 @@ public class Lab2P2_EmilianoUrtecho {
                 case 3: // Listar Carro
                     break;
                 case 4: // Eliminar Carro
+                    System.out.print("Ingrese el nombre del dueno del carro para eliminarlo: ");
+                    String nombreDueno = escan.next();
+                    eliminarCarro(nombreDueno);
                     break;
                 case 5://SALIR
                     System.out.println("Si quiere salir, presione la tecla 5 otra vez");
@@ -235,4 +238,30 @@ public class Lab2P2_EmilianoUrtecho {
         String nombreJugador = escan.next();
     }
     
+    public static void listarCarro(){
+        System.out.println("Ingrese el nombre del jugador para listar sus autos");
+        String nombre = escan.next();
+        boolean bandera = false;
+        
+        for (Jugador jugador : jugadores) {
+            if (jugador.getNombre().equalsIgnoreCase(nombre)) {
+                
+            }
+        }
+    }    
+    
+    public static void eliminarCarro(String nombre){
+        for (Jugador jugador : jugadores) {
+            if (jugador.getNombre().equalsIgnoreCase(nombre)) {
+                List<Carro> carros = new ArrayList();
+                if (!carros.isEmpty()) {
+                    carros.remove(carros);
+                    System.out.println("Se ha eliminado el carro con exito");
+                }else{
+                    System.out.println("No tiene ningun carro que eliminar");
+                }
+            }
+        }
+        System.out.println("No se ha encontrado ningun jugador con ese nombre");
+    }
 }
