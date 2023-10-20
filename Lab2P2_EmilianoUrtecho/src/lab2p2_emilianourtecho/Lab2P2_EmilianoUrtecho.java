@@ -105,6 +105,52 @@ public class Lab2P2_EmilianoUrtecho {
         
     }
     
+    public static void modificarJugador(String nombre, int puntosReput, double dineroActual){
+        for (int i = 0; i < jugadores.size(); i++) {
+            Jugador jugador = jugadores.get(i);
+            if (jugador.getNombre().equalsIgnoreCase(nombre)) {
+                jugador.setReputacionPuntos(puntosReput);
+                jugador.setDineroBanco(dineroActual);
+                System.out.println("El jugador se ha actualizado con exito!!!");
+            }
+        }
+        System.out.println("El jugador no se pudo encontrar");
+    }
+    
+    public static void listarJugador(){
+        if (jugadores.isEmpty()) {
+            System.out.println("No hay jugadores creados aun");
+        }else{
+            System.out.println("Jugadores: ");
+            for (int i = 0; i < jugadores.size(); i++) {
+                Jugador jugador = jugadores.get(i);
+                System.out.println("Nombre: " +jugador.getNombre());
+                System.out.println("Puntos de reputacion: " + jugador.getReputacionCarros());
+                System.out.println("Dinero en el Banco: "+ jugador.getDineroBanco());
+                System.out.println("");
+                System.out.println("-----------------");
+                System.out.println("");
+            }
+        }
+    }
+    
+    public static void eliminarJugador(String nombre){
+        Jugador jugadorEliminar= null ;
+        for (int i = 0; i < jugadores.size(); i++) {
+            Jugador jugador = jugadores.get(i);
+            if (jugador.getNombre().equalsIgnoreCase(nombre)) {
+                jugadorEliminar = jugador;
+                break;
+            }
+        }
+        if (jugadorEliminar != null) {
+            jugadores.remove(jugadorEliminar);
+            System.out.println("El jugador se ha eliminado con exito");
+        }else{
+            System.out.println("No se pudo encontrar el jugador para eliminarlo");
+        }
+    }
+    
     //CRUD CARROS
     public static void crudCarros(){
         byte eleccionC;
@@ -161,12 +207,18 @@ public class Lab2P2_EmilianoUrtecho {
         
         List<String> mejorasSeleccionadas = new ArrayList();
         System.out.println("Ingrese la cantidad de mejoras visuales que quiera: ");
-        String mejorasIngresadas = escan.next();
-        
-        
-        System.out.print("Ingrese el nombre del jugador que tengra el carro: ");
+        int cantidadMejoras = escan.nextInt();
+        for (int i = 0; i < cantidadMejoras; i++) {
+            System.out.println("Seleccione la mejora visual #" + (i + 1) + ":");
+            for (int j = 0; j < mejoraTipo.length; j++) {
+                System.out.println((j + 1) + ". " + mejoraTipo[j] + " - Precio: " + mejoraPrecio[j]);
+            }
+            int seleccion = escan.nextInt();
+            mejorasSeleccionadas.add(mejoraTipo[seleccion - 1]);
+        }
+
+        System.out.print("Ingrese el nombre del jugador que tendrá el carro: ");
         String nombreJugador = escan.next();
-        
     }
     
 }
