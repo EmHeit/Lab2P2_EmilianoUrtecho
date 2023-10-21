@@ -2,6 +2,7 @@
 package lab2p2_emilianourtecho;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Jugador {
     
@@ -65,4 +66,8 @@ public class Jugador {
     public void setNombre(String Nombre){
         this.nombre = Nombre;
     }    
+
+    List<Carro> getCarros() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

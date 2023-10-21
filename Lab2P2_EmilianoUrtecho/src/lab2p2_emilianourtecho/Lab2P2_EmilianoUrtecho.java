@@ -183,6 +183,7 @@ public class Lab2P2_EmilianoUrtecho {
                 case 2: // Modificar CArro
                     break;
                 case 3: // Listar Carro
+                    listarCarro();
                     break;
                 case 4: // Eliminar Carro
                     System.out.print("Ingrese el nombre del dueno del carro para eliminarlo: ");
@@ -245,10 +246,29 @@ public class Lab2P2_EmilianoUrtecho {
         
         for (Jugador jugador : jugadores) {
             if (jugador.getNombre().equalsIgnoreCase(nombre)) {
-                
+                bandera = true;
+                List<Carro> carros = jugador.getCarros();
+                if (carros.isEmpty()) {
+                    System.out.println("Aun no hay autos registrados");
+                }else{
+                    System.out.println("Carro del jugador: "+ nombre);
+                    for (Carro carro : carros) {
+                        System.out.println("Marca: "+carro.getMarca());
+                        System.out.println("Modelo: "+carro.getModelo());
+                        System.out.println("Color: " + carro.getColor());
+                        System.out.println("Precio: "+carro.getPrecio());
+                        System.out.println("Mejoras Visuales: "+carro.getMejorasVisuales());
+                        System.out.println("Reconstruido: "+ (carro.getReconstruido() ? "Si" : "No"));
+                        System.out.println("------------------------");
+                    }
+                }
+                break;
             }
         }
-    }    
+        if (!bandera) {
+            System.out.println("No se ha encontrado un jugador con ese nombre");
+        }
+    }
     
     public static void eliminarCarro(String nombre){
         for (Jugador jugador : jugadores) {
