@@ -30,7 +30,7 @@ public class Lab2P2_EmilianoUrtecho {
                     crudCarros();
                     break;
                 case 3: // Compra y venta de carros
-                    
+                    compraYventa();
                     break;
                 case 4: // Instalacion de mejoras visuales
                     
@@ -169,7 +169,7 @@ public class Lab2P2_EmilianoUrtecho {
         byte eleccionC;
         System.out.println("    ~CRUD CARROS~");
         System.out.println("1. Crear Carro");
-        System.out.println("2. Modificar Carro"); // No cambiar color o precio
+        System.out.println("2. Modificar Carro");
         System.out.println("3. Listar Carro"); // Listar carros, lista los jguadores y buscar el carro en base al nombre del jugador
         System.out.println("4. Eliminar Carro");
         System.out.println("5. SALIR");
@@ -181,6 +181,9 @@ public class Lab2P2_EmilianoUrtecho {
                     crearCarro();
                     break;
                 case 2: // Modificar CArro
+                    System.out.print("Ingrese el nombre del jugador a modificar: ");
+                    String nombreDueno1 = escan.next();
+                    modificarCarro(nombreDueno1);
                     break;
                 case 3: // Listar Carro
                     listarCarro();
@@ -284,4 +287,98 @@ public class Lab2P2_EmilianoUrtecho {
         }
         System.out.println("No se ha encontrado ningun jugador con ese nombre");
     }
+    
+    public static void modificarCarro(String nombreDueno) {
+        boolean carroEncontrado = false;
+
+        for (Jugador jugador : jugadores) {
+            if (jugador.getNombre().equalsIgnoreCase(nombreDueno)) {
+                List<Carro> carros = jugador.getCarros();
+                if (!carros.isEmpty()) {
+                    System.out.println("Carros de " + nombreDueno + ":");
+                    for (Carro carro : carros) {
+                        System.out.println("Marca: " + carro.getMarca());
+                        System.out.println("Modelo: " + carro.getModelo());
+                        System.out.println("Color: " + carro.getColor());
+                        System.out.println("Precio: " + carro.getPrecio());
+                        System.out.println("Mejoras Visuales: " + carro.getMejorasVisuales());
+                        System.out.println("Reconstruido: " + (carro.getReconstruido() ? "Sí" : "No"));
+                        System.out.println("------------------------");
+                    }
+                    System.out.print("Ingrese la marca del carro que desea modificar: ");
+                    String marcaCarro = escan.next();
+
+                    for (Carro carro : carros) {
+                        if (carro.getMarca().equalsIgnoreCase(marcaCarro)) {
+                            System.out.println("Seleccione qué desea modificar:");
+                            System.out.println("1. Color");
+                            System.out.println("2. Precio");
+                            System.out.println("3. Mejoras Visuales");
+                            System.out.print("Elija una opción: ");
+                            int opcion = escan.nextInt();
+                            switch (opcion) {
+                                case 1:
+                                    System.out.print("Nuevo color: ");
+                                    String nuevoColor = escan.next();
+                                    carro.setColor(nuevoColor);
+                                    System.out.println("Color del carro modificado con éxito.");
+                                    break;
+                                case 2:
+                                    System.out.print("Nuevo precio: ");
+                                    double nuevoPrecio = escan.nextDouble();
+                                    carro.setPrecio(nuevoPrecio);
+                                    System.out.println("Precio del carro modificado con éxito.");
+                                    break;
+                                case 3:
+                                    System.out.println("Mejoras visuales actuales: " + carro.getMejorasVisuales());
+                                    System.out.print("Ingrese el índice de la mejora a eliminar (1, 2, 3, ...): ");
+                                    int indiceMejora = escan.nextInt();
+                                    if (indiceMejora >= 1 && indiceMejora <= carro.getMejorasVisuales().size()) {
+                                        carro.getMejorasVisuales().remove(indiceMejora - 1);
+                                        System.out.println("Mejora visual eliminada con éxito.");
+                                    } else {
+                                        System.out.println("Índice inválido. No se realizó ninguna modificación.");
+                                    }
+                                    break;
+                                default:
+                                    System.out.println("Opción inválida. No se realizó ninguna modificación.");
+                            }
+                            carroEncontrado = true;
+                            break;
+                        }
+                    }
+                } else {
+                    System.out.println("El jugador no tiene carros registrados.");
+                }
+                break;
+            }
+        }
+
+        if (!carroEncontrado) {
+            System.out.println("No se encontró un carro con la marca especificada.");
+        }
+    }
+    
+    public static void compraYventa(){
+        byte eleccion;
+        System.out.println("   ~Compra y Venta de carros~");
+        System.out.println("1. Compra Carro");
+        System.out.println("2. Vender Carro");
+        System.out.println("3. SALIR");
+        System.out.print("Elija una opcion: ");
+        eleccion = escan.nextByte();
+        do {
+            switch(eleccion){
+                case 1: // Compra Carro
+                    break;
+                case 2: //Vender CArro
+                    break;
+                case 3: // SALIR
+                    break;
+                default://No se
+                    break;  
+            }
+        } while (eleccion != 3);
+    }
+    
 }

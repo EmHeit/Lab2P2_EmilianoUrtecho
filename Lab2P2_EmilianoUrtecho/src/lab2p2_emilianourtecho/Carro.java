@@ -54,5 +54,12 @@ public class Carro {
         return null;
     }    
     
+    //SETTERS
+    public void setColor(String Color){
+        this.Color = Color;
+    }
+    public void setPrecio(double Precio){
+        this.precio = Precio;
+    }
     
 }
