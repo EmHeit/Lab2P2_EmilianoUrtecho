@@ -427,8 +427,46 @@ public class Lab2P2_EmilianoUrtecho {
         carrosDisponibles.remove(carroComprado);
         System.out.println("El jugador "+nombre+" ha comprado un carro "+marca+" con exito!!!");
     }
+    
     public static void venderCarro(){
+        System.out.print("Ingrese el nombre del jugador que desea vender su carro: ");
+        String nombre = escan.next();
         
+        Jugador vendedor = null;
+        for (Jugador jugador : jugadores) {
+            if (jugador.getNombre().equalsIgnoreCase(nombre)) {
+                vendedor = jugador;
+                break;
+            }
+        }
+        if (vendedor == null) {
+            System.out.println("No se encontro ningun jguador con ese nombre");
+            return;
+        }
+        
+        System.out.print("Ingrese la marca del carro que desea vender: ");
+        String marcaCarro = escan.next();
+        
+        Carro carroAVender = null;
+        List<Carro> carrosDelVendedor = vendedor.getCarros();
+        
+        for (Carro carro : carrosDelVendedor) {
+            if (carro.getMarca().equalsIgnoreCase(marcaCarro)) {
+                carroAVender = carro;
+                break;
+            }
+        }
+        
+        if (carroAVender == null) {
+            System.out.println("No se encontro un carro con esa marca");
+            return;
+        }
+        double precioCarroAVender = carroAVender.getPrecio();
+        
+        vendedor.getCarros().remove(carroAVender);
+        vendedor.setDineroBanco(vendedor.getDineroBanco()+precioCarroAVender);
+        
+        System.out.println("El jugador "+ nombre+" ha vendido el carro "+marcaCarro+" con exito");
     }
     
 }
