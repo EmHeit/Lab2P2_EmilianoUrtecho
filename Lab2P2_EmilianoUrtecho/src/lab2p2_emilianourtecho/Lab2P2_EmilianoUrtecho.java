@@ -359,6 +359,7 @@ public class Lab2P2_EmilianoUrtecho {
         }
     }
     
+    //Comprar y vender carro
     public static void compraYventa(){
         byte eleccion;
         System.out.println("   ~Compra y Venta de carros~");
@@ -370,15 +371,64 @@ public class Lab2P2_EmilianoUrtecho {
         do {
             switch(eleccion){
                 case 1: // Compra Carro
+                    comprarCarro();
                     break;
-                case 2: //Vender CArro
+                case 2: //Vender Carro
+                    venderCarro();
                     break;
                 case 3: // SALIR
+                    System.out.println("Si quiere salir, presione la tecla 3 otra vez");
                     break;
                 default://No se
+                    System.out.println("No puedo leer eso, por favor presione una telca valida");
                     break;  
             }
         } while (eleccion != 3);
+    }
+    
+    public static void comprarCarro(){
+        System.out.print("Ingrese el nombre del jugador que comrpara el carro: ");
+        String nombre = escan.next();
+        
+        Jugador comprador = null;
+        for (Jugador jugador : jugadores) {
+            if (jugador.getNombre().equalsIgnoreCase(nombre)) {
+                comprador = jugador;
+                break;
+            }
+        }
+        if (comprador == null) {
+            System.out.println("No se encontro nignun jugador con ese nombre");
+            return;
+        }
+        System.out.print("Ingrese la marca de carro que desea comprar: ");
+        String marca = escan.next();
+        Carro carroComprado = null;
+        List<Carro> carrosDisponibles = new ArrayList();
+        
+        for (Carro carro : carrosDisponibles) {
+            if (carro.getMarca().equalsIgnoreCase(marca)) {
+                carroComprado = carro;
+                break;
+            }
+        }
+        if (carroComprado == null) {
+            System.out.println("No se encontro ningun caror con esa marca");
+            return;
+        }
+        double precioTotal = carroComprado.getPrecio();
+        
+        if (comprador.getDineroBanco()<precioTotal) {
+            System.out.println("El jugador no tiene suficiente dinero para comprar el vehiculo");
+            return;
+        }
+        comprador.getCarros().add(carroComprado);
+        comprador.setDineroBanco(comprador.getDineroBanco()-precioTotal);
+        carrosDisponibles.remove(carroComprado);
+        System.out.println("El jugador "+nombre+" ha comprado un carro "+marca+" con exito!!!");
+    }
+    public static void venderCarro(){
+        
     }
     
 }
