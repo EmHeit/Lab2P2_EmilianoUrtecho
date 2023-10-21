@@ -33,7 +33,7 @@ public class Lab2P2_EmilianoUrtecho {
                     compraYventa();
                     break;
                 case 4: // Instalacion de mejoras visuales
-                    
+                    instMejorasVisuales();
                     break;
                 case 5: // SALIR
                     System.out.println("Si quiere salir, presione la misma tecla");
@@ -468,5 +468,77 @@ public class Lab2P2_EmilianoUrtecho {
         
         System.out.println("El jugador "+ nombre+" ha vendido el carro "+marcaCarro+" con exito");
     }
+    
+    //Instalacion
+    public static void instMejorasVisuales(){
+        System.out.print("Ingresa el nombre del jugador que desea instalar mejoras: ");
+        String nombre = escan.next();
+        
+        Jugador jugador = null;
+        for (Jugador jugad : jugadores) {
+            if (jugad.getNombre().equalsIgnoreCase(nombre)) {
+                jugador = jugad;
+                break;
+            }
+        }
+        if (jugador == null) {
+            System.out.println("No se ha encontrado ningun jugador con ese nombre");
+            return;
+        }
+        if (jugador.getCarros().isEmpty()) {
+            System.out.println("El jugador no tiene autos para aplicarle mejoras");
+            return;
+        }
+        
+        System.out.println("Ingrese la marca del carro que desea instalarle las mejoras");
+        String marca = escan.next();
+        
+        Carro carroAActualizar = null;
+        List<Carro> carrosDelJugador = jugador.getCarros();
+        
+        for (Carro carro : carrosDelJugador) {
+            if (carro.getMarca().equalsIgnoreCase(marca)) {
+                carroAActualizar = carro;
+                break;
+            }
+        }
+        
+        if (carroAActualizar == null) {
+            System.out.println("No se ha encontrado un auto con esa marca");
+            return;
+        }
+        String[] mejoraTipo = {"Spoiler", "Side Skirts", "Front Bumper", "Back Bumper", "Super Burlds"};
+        double[] mejoraPrecio = {3500.00, 1800.00, 2000.00, 1500.00, 8800.00};
+        
+        System.out.println("Las mejoras visuales disponibles: ");
+        
+        for (int i = 0; i < mejoraTipo.length; i++) {
+            System.out.println((i + 1) + ". " + mejoraTipo[i] + " - Precio: " + mejoraPrecio[i]);
+            
+        }
+        System.out.print("Ingrese el número de la mejora visual que desea instalar: ");
+        int seleccion = escan.nextInt();
+
+        if (seleccion >= 1 && seleccion <= mejoraTipo.length) {
+            String mejoraElegida = mejoraTipo[seleccion - 1];
+            double precioMejora = mejoraPrecio[seleccion - 1];
+
+            // Verifica si el jugador tiene suficiente dinero para instalar la mejora visual
+            if (jugador.getDineroBanco() >= precioMejora) {
+                List<String> mejorasVisuales = carroAActualizar.getMejorasVisuales();
+                mejorasVisuales.add(mejoraElegida);
+                carroAActualizar.setMejorasVisuales(mejorasVisuales);
+
+                // Actualiza el dinero del jugador
+                double nuevoDinero = jugador.getDineroBanco() - precioMejora;
+                jugador.setDineroBanco(nuevoDinero);
+
+                System.out.println("Mejora visual " + mejoraElegida + " instalada con éxito en el carro " + marca + ".");
+            } else {
+                System.out.println("El jugador no tiene suficiente dinero para instalar esta mejora visual.");
+            }
+        } else {
+            System.out.println("Selección de mejora visual inválida.");
+        }    }
     
 }

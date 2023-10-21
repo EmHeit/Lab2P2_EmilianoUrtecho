@@ -52,7 +52,8 @@ public class Carro {
             }
         }
         return null;
-    }    
+    }  
+    
     
     //SETTERS
     public void setColor(String Color){
@@ -61,5 +62,7 @@ public class Carro {
     public void setPrecio(double Precio){
         this.precio = Precio;
     }
-    
+    public void setMejorasVisuales(List<String> mejorasVisuales){
+        this.mejorasVisuales = mejorasVisuales;
+    }    
 }
